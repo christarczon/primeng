@@ -111,6 +111,7 @@ export class RowExpansionLoader implements OnInit, OnDestroy {
             <th #headerCell [attr.id]="col.colId" [ngStyle]="col.style" [class]="col.styleClass" (click)="dt.sort($event,col)" [attr.colspan]="col.colspan" [attr.rowspan]="col.rowspan"
                 [ngClass]="{'ui-state-default ui-unselectable-text':true, 'ui-sortable-column': col.sortable, 'ui-state-active': dt.isSorted(col), 'ui-resizable-column': dt.resizableColumns, 'ui-selection-column':col.selectionMode,
                             'ui-helper-hidden': col.hidden}"
+                role="columnheader" [attr.aria-sort]="dt.getSortOrder(col) == 1 ? 'ascending' : dt.getSortOrder(col) == -1 ? 'descending' : 'none'"
                 (dragstart)="dt.onColumnDragStart($event)" (dragleave)="dt.onColumnDragleave($event)" (drop)="dt.onColumnDrop($event)" (mousedown)="dt.onHeaderMousedown($event,headerCell)"
             >
                 <div (keydown)="dt.onHeaderKeydown($event,col)" [attr.role]="col.sortable && 'button'" [attr.tabindex]="col.sortable ? tabindex || 0 : null">
